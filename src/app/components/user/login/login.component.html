@@ -1,0 +1,25 @@
+<div *ngIf="userService.token;then content else else_content">
+
+</div>
+<ng-template #content>
+  <button class="btn btn-default" (click)="logout()">
+    Log out
+  </button>
+</ng-template>
+<ng-template #else_content>
+  <form [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>User name</label>
+      <input class="form-control" name="name" formControlName="userName" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name="pasword" formControlName="password" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" [disabled]="loginForm.invalid">
+        Log in
+      </button>
+    </div>
+  </form>
+</ng-template>
