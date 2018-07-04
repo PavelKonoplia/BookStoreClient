@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/user.service';
+import { Role } from '../../../common/enums/role.enum';
 
 @Component({
   selector: 'app-personal-page',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalPageComponent implements OnInit {
 
-  constructor() { }
+  role: Role;
+
+  constructor(private userService:UserService) {
+    this.role = this.userService.role;
+  }
 
   ngOnInit() {
   }
 
+  checking(){
+    console.log(this.role, this.userService.userId)
+  }
 }

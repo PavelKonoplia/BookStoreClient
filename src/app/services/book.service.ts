@@ -19,10 +19,7 @@ export class BookService {
     header: HttpHeaders;
 
     constructor(private http: HttpClient, private userService: UserService) {
-        this.header = new HttpHeaders({
-            'Content-Type': 'application/json', 'Authorization':
-                `Bearer ${this.userService.token}`
-        });
+        this.header = this.userService.header;
     }
 
     getBooks() {
@@ -30,12 +27,17 @@ export class BookService {
             .get(API_URL + BOOK_API);
     }
 
-    public createBook(book: Book) {
+    createBook(book: Book) {
         return this.http
-            .post(API_URL + BOOK_API, book, { headers: this.header });
+            .post(API_URL + BOOK_API, book, { headers: this.header }).subscribe();
     }
 
-    public getBookById(bookId: number) {
+    updateBook(book: Book) {
+        return this.http
+            .put(API_URL + BOOK_API, book, { headers: this.header }).subscribe();
+    }
+
+    getBookById(bookId: number) {
         return this.http
             .get(API_URL + BOOK_API + '/' + bookId, { headers: this.header });
     }

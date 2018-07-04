@@ -1,12 +1,14 @@
-import { BaseModel } from ".";
+import { BaseProductModel } from ".";
+import { Role } from "../enums/role.enum";
 
 export class User {
     constructor(
         public Id: number,
         public UserName: string,
         public Email: string,
-        public PasswordHash: string,
-        public Selling?: BaseModel[]
+        public Role:Role,
+        public PasswordHash?: string,
+        public Selling?: BaseProductModel[]
     ) {
     }
 }

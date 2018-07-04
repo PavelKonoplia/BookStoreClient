@@ -1,6 +1,6 @@
-import { BaseModel, Tag } from ".";
+import { BaseProductModel, Tag } from ".";
 
-export class Book extends BaseModel {
+export class Book extends BaseProductModel {
     constructor(
         public Id: number,
         public Price: number,
@@ -9,6 +9,8 @@ export class Book extends BaseModel {
         public ISO: string,
         public Genre: string,
         public Author: string,
-        public Tags?: Tag[])  { super(Id,Price)
+        public UserId: number,
+        public Tags?: Tag[]) {
+            super(Id, Price, UserId)
     }
 }

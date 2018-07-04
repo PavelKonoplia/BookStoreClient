@@ -1,10 +1,10 @@
-import { BaseModel } from ".";
-import { User } from "./user.model";
+import { BaseProductModel } from ".";
+import { User } from ".";
 
 export class Order {
     constructor(
         public Id: number,
         public User: User,
-        public Goods: BaseModel[]) {
+        public Goods: BaseProductModel[]) {
     }
 }

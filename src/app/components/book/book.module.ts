@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookListComponent } from './book-list/book-list.component';
-import { DisplayBookComponent } from 'src/app/components/book/display-book/display-book.component';
 import { BookService } from '../../services/book.service';
+import { AddBookComponent } from './add-book/add-book.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    // DataRoutingModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [BookListComponent, DisplayBookComponent],
-  exports: [BookListComponent, DisplayBookComponent],
+  declarations: [BookListComponent, AddBookComponent],
+  exports: [BookListComponent, AddBookComponent],
   providers: [BookService],
 })
 export class BookModule { }

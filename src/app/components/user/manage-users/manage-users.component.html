@@ -1,0 +1,20 @@
+<div class="container-fluid  py-2 my-1" *ngFor="let user of users">
+  <div *ngIf="currentId != user.Id" class="row border rounded">
+    <div class="col-sm-4 text-center">
+      <span> {{user.UserName}}</span>
+    </div>
+    <div class="col-sm-4 text-center">
+      <span> {{user.Email}}</span>
+    </div>
+    <div class="col-sm-4 text-center">
+      <form  [formGroup]="roleForm">
+        <select #role (change)="changeRole(user.Id,role.value)" >
+          <option *ngFor="let role of roleEnum | enumToArray"  [ngValue]="user.Role"  >{{ role }}</option>
+        </select>
+      </form>
+      <button (click)="deleteUser(user)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<button (click)="checking()">users</button>

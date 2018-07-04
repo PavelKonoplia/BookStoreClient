@@ -5,8 +5,6 @@ import { ComponentCanDeactivate } from '../../../services/guard.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../common/models';
 
-
-
 @Component({
   selector: 'registration',
   templateUrl: './registration.component.html',
@@ -41,7 +39,7 @@ export class RegistrationComponent implements ComponentCanDeactivate {
       userName: new FormControl("", Validators.required),
       email: new FormControl("", [
         Validators.required,
-        Validators.pattern("[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
+        Validators.pattern("[a-zA-Z0-9_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")
       ]),
       passwords: this.formBuilder.group({
         password: ['', [Validators.required]],
@@ -60,7 +58,7 @@ export class RegistrationComponent implements ComponentCanDeactivate {
   }
 
   submit() {
-    let user = new User(null, this.registrationForm.get("email").value, this.registrationForm.get("userName").value, this.registrationForm.get("passwords.password").value)
+    let user = new User(null, this.registrationForm.get("userName").value, this.registrationForm.get("email").value, this.registrationForm.get("passwords.password").value)
     this.userService.registrateUser(user);
     this.saved = true;
   }

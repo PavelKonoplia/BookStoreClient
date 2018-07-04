@@ -2,33 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { DisapleBookComponent } from './components/book/display-book/disaple-book/disaple-book.component';
-import { DisplayBookComponent } from './components/book/display-book/display-book/display-book.component';
-import { BookListComponent } from './components/book/book-list/book-list.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { ChartComponent } from './components/user/chart/chart.component';
-import { AdminComponent } from './components/user/roles/admin/admin.component';
-import { SellerComponent } from './components/user/roles/seller/seller.component';
-import { CustomerComponent } from './components/user/roles/customer/customer.component';
+import { BookModule } from './components/book/book.module';
+import { UserModule } from './components/user/user.module';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { Guard } from './services/guard.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DisapleBookComponent,
-    DisplayBookComponent,
-    BookListComponent,
-    RegistrationComponent,
-    LoginComponent,
-    ChartComponent,
-    AdminComponent,
-    SellerComponent,
-    CustomerComponent
+    AppComponent  
   ],
   imports: [
-    BrowserModule
+    BrowserModule,   
+    BookModule,
+    UserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule    
   ],
-  providers: [],
+  providers: [UserService, Guard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
