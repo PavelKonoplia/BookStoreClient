@@ -12,13 +12,11 @@ export class PersonalPageComponent implements OnInit {
   role: Role;
 
   constructor(private userService:UserService) {
-    this.role = this.userService.role;
+    
   }
 
   ngOnInit() {
+    this.role = this.userService.role;
   }
 
-  checking(){
-    console.log(this.role, this.userService.userId)
-  }
 }

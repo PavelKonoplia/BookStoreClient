@@ -14,7 +14,7 @@ export class ChartComponent implements OnInit {
   constructor(private chartService: ChartService) { }
 
   ngOnInit() {
-    this.chartService.chart.subscribe((products: BaseProductModel[]) => this.products = products);
+    this.chartService.chart.subscribe((products: BaseProductModel[]) => this.products = products);  
   }
 
   order(){
