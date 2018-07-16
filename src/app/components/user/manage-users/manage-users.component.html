@@ -6,12 +6,10 @@
     <div class="col-sm-4 text-center">
       <span> {{user.Email}}</span>
     </div>
-    <div class="col-sm-4 text-center">
-      <!-- <form  [formGroup]="roleForm"> -->
+    <div class="col-sm-4 text-center">      
         <select #role (change)="changeRole(user.Id,role.value)" [value]="user.RoleName">
           <option *ngFor="let role of roleEnum | enumToArray" >{{ role }}</option>
         </select>
-      <!-- </form> -->
       <button (click)="deleteUser(user)">Delete</button>
     </div>
   </div>

@@ -16,18 +16,11 @@ export class ManageUsersComponent implements OnInit {
   roleEnum = Role;
   currentId: number;
 
-
-  roleForm: FormGroup;
-
   getRole(user: User) {
     return user.Role;
   }
 
   constructor(private userService: UserService) {
-    this.roleForm = new FormGroup({
-      role: new FormControl(null)
-    });
-    this.roleForm.controls['role'].setValue(Role.Customer, { onlySelf: true });
   }
 
   ngOnInit() {

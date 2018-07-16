@@ -6,8 +6,8 @@ export class User {
         public Id: number,
         public UserName: string,
         public Email: string,
-        public Role:Role,
         public PasswordHash?: string,
+        public Role?:Role,
         public Selling?: BaseProductModel[]
     ) {
     }
