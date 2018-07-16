@@ -10,6 +10,7 @@ import { BookModule } from '../book/book.module';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ChartComponent } from './chart/chart.component';
 import { EnumToArrayPipe } from 'src/app/common/enum-to-array.pipe';
+import { SellerComponent } from './seller/seller.component';
 
 @NgModule({
   imports: [
@@ -22,16 +23,18 @@ import { EnumToArrayPipe } from 'src/app/common/enum-to-array.pipe';
   declarations: [LoginComponent,
     RegistrationComponent,
     PersonalPageComponent,
-    ManageUsersComponent,    
+    ManageUsersComponent,
     ChartComponent,
+    SellerComponent,
     EnumToArrayPipe
-    ],
+  ],
   exports: [LoginComponent,
     RegistrationComponent,
     PersonalPageComponent,
     ManageUsersComponent,
-    ChartComponent
-    ],
+    ChartComponent,
+    SellerComponent
+  ],
   providers: [],
 })
 export class UserModule { }
