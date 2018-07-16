@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartService } from '../../../services/chart.service';
-import { BaseProductModel } from '../../../common/models';
+import { Book } from '../../../common/models';
 
 @Component({
   selector: 'chart',
@@ -9,15 +9,19 @@ import { BaseProductModel } from '../../../common/models';
 })
 export class ChartComponent implements OnInit {
 
-  products: BaseProductModel[];
+  products: Book[];
 
   constructor(private chartService: ChartService) { }
 
   ngOnInit() {
-    this.chartService.chart.subscribe((products: BaseProductModel[]) => this.products = products);  
+    this.chartService.chart.subscribe((products: Book[]) => this.products = products);  
+  }
+
+  deleteItem(item: Book){
+    this.chartService.deleteFromChart(item);
   }
 
   order(){
     this.chartService.order();
-  }
+  }  
 }

@@ -13,13 +13,13 @@ export class BookListComponent implements OnInit {
 
   bookList: Book[];
   chartList: Book[];
-  logged:boolean;
+  logged: boolean;
 
-  constructor(private bookService: BookService, private chartService: ChartService, private userService:UserService) { }
+  constructor(private bookService: BookService, private chartService: ChartService, private userService: UserService) { }
 
   ngOnInit() {
     this.bookService.getBooks()
-      .subscribe((bookList: Book[]) => this.bookList = bookList);
+      .subscribe((bookList: Book[]) => this.bookList = bookList.filter(b => b.UserId != this.userService.userId));
     this.chartService.chart.subscribe((chartList: Book[]) => this.chartList = chartList);
   }
 

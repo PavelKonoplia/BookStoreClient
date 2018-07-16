@@ -11,8 +11,8 @@ import { OrderService } from './order.service';
 })
 export class ChartService {
 
-    private array: BaseProductModel[] = [];
-    chart: Observable<Array<BaseProductModel>>;
+    private array: Book[] = [];
+    chart: Observable<Array<Book>>;
     private observer;
 
     constructor(private orderService: OrderService) {
@@ -22,8 +22,16 @@ export class ChartService {
         });
     }
 
-    addToChart(product: BaseProductModel) {
+    addToChart(product: Book) {
         this.array.push(product);
+        this.observer.next(this.array);
+    }
+
+    deleteFromChart(product: Book) {
+        var index = this.array.indexOf(product);
+        if (index > -1) {
+            this.array.splice(index, 1);
+        }
         this.observer.next(this.array);
     }
 

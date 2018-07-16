@@ -42,12 +42,6 @@ export class AddBookComponent {
     }
   }
 
-  passwordConfirming(c: AbstractControl): { invalid: boolean } {
-    if (c.get('password').value !== c.get('passwordConfirm').value) {
-      return { invalid: true };
-    }
-  }
-
   createForm() {
     this.addBookForm = this.formBuilder.group({
       title: new FormControl("", Validators.required),
