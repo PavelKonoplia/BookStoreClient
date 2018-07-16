@@ -19,19 +19,19 @@ export class ManageUsersComponent implements OnInit {
 
   roleForm: FormGroup;
 
-  getRole(user:User){
+  getRole(user: User) {
     return user.Role;
   }
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService) {
     this.roleForm = new FormGroup({
       role: new FormControl(null)
-  });
-  this.roleForm.controls['role'].setValue(Role.Customer, {onlySelf: true});
+    });
+    this.roleForm.controls['role'].setValue(Role.Customer, { onlySelf: true });
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
+    this.userService.getUsers().subscribe((users: User[]) => { this.users = users; console.log(this.users); });
     this.currentId = this.userService.userId;
   }
 
