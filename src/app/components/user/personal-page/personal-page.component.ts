@@ -9,14 +9,11 @@ import { Role } from '../../../common/enums/role.enum';
 })
 export class PersonalPageComponent implements OnInit {
 
-  role: Role;
+  role: string;
 
-  constructor(private userService:UserService) {
-    
-  }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.role = this.userService.role;
   }
-
 }

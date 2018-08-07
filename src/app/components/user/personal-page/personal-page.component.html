@@ -1,5 +1,24 @@
-<chart></chart>
+<div *ngIf="role == 'Admin'||'Seller'">
+    <nav class="navbar navbar-expand-sm py-0">
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="chart" routerLinkActive="active"> Chart </a>
+            </li>
+            <li>
+                <a class="nav-link" routerLink="manage-books" routerLinkActive="active"> Manage books </a>
+            </li>
+            <li *ngIf="role == 'Seller'" class="nav-item">
+                <a class="nav-link" routerLink="add-book" routerLinkActive="active"> Add book </a>
+            </li>
+            <li *ngIf="role == 'Admin'" class="nav-item">
+                <a class="nav-link" routerLink="manage-users" routerLinkActive="active"> Manage users </a>
+            </li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
 
-<manage-users *ngIf="role == 'Admin'"></manage-users>
+<!-- <chart *ngIf="role == 'Customer'"></chart> -->
 
-<seller *ngIf="role == 'Seller'"></seller>
+<!-- <manage-users *ngIf="role == 'Admin'"></manage-users>
+<seller *ngIf="role == 'Seller'"></seller> -->

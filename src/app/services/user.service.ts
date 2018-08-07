@@ -14,7 +14,7 @@ const TOKEN_API = '/token';
 interface IToken {
     access_token: string,
     userID: number,
-    role: Role
+    role: string
 }
 
 @Injectable({
@@ -24,7 +24,7 @@ export class UserService {
 
     public token: string;
     public userId: number;
-    public role: Role;
+    public role: string;
     public header: HttpHeaders;
 
     constructor(private http: HttpClient, private router: Router) { }

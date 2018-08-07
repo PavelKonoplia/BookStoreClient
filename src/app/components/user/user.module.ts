@@ -10,7 +10,7 @@ import { BookModule } from '../book/book.module';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ChartComponent } from './chart/chart.component';
 import { EnumToArrayPipe } from 'src/app/common/enum-to-array.pipe';
-import { SellerComponent } from './seller/seller.component';
+import { ManageBooksComponent } from './manage-books/manage-books.component';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { SellerComponent } from './seller/seller.component';
     PersonalPageComponent,
     ManageUsersComponent,
     ChartComponent,
-    SellerComponent,
+    ManageBooksComponent,
     EnumToArrayPipe
   ],
   exports: [LoginComponent,
@@ -33,7 +33,7 @@ import { SellerComponent } from './seller/seller.component';
     PersonalPageComponent,
     ManageUsersComponent,
     ChartComponent,
-    SellerComponent
+    ManageBooksComponent
   ],
   providers: [],
 })

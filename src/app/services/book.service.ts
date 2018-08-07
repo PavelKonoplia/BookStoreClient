@@ -16,10 +16,7 @@ const BOOK_API = '/book';
 })
 export class BookService {
 
-    header: HttpHeaders;
-
     constructor(private http: HttpClient, private userService: UserService) {
-        this.header = this.userService.header;
     }
 
     getBooks() {
@@ -29,16 +26,21 @@ export class BookService {
 
     createBook(book: Book) {
         return this.http
-            .post(API_URL + BOOK_API, book, { headers: this.header }).subscribe();
+            .post(API_URL + BOOK_API, book, { headers: this.userService.header }).subscribe();
     }
 
     updateBook(book: Book) {
         return this.http
-            .put(API_URL + BOOK_API, book, { headers: this.header }).subscribe();
+            .put(API_URL + BOOK_API, book, { headers: this.userService.header }).subscribe();
     }
 
     getBookById(bookId: number) {
         return this.http
-            .get(API_URL + BOOK_API + '/' + bookId, { headers: this.header });
+            .get(API_URL + BOOK_API + `/${bookId}`, { headers: this.userService.header });
+    }
+
+    deleteBook(bookId: number) {
+        return this.http
+            .delete(API_URL + BOOK_API + `/${bookId}`, { headers: this.userService.header }).subscribe();
     }
 }

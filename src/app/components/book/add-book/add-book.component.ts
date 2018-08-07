@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../../../common/models';
 import { BookService } from '../../../services/book.service';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UserService } from '../../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,8 +16,22 @@ export class AddBookComponent {
 
   saved: boolean = false;
   addBookForm: FormGroup;
+  book: Book;
 
-  constructor(private bookService: BookService, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(
+    private bookService: BookService,
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    let bookId;
+    
+    this.route.queryParams.subscribe(params => {
+      bookId = params['id'];
+    }).add(this.bookService.getBookById(bookId).subscribe((book: Book) => this.book = book));
+
     this.createForm();
   }
 
@@ -43,17 +58,30 @@ export class AddBookComponent {
   }
 
   createForm() {
-    this.addBookForm = this.formBuilder.group({
-      title: new FormControl("", Validators.required),
-      price: new FormControl("", Validators.required),
-      iso: new FormControl("", [
-        Validators.required,
-        Validators.pattern("[0-9]{8}")
-      ]),
-      author: new FormControl("", Validators.required),
-      genre: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-    })
+    this.book ?
+      this.addBookForm = this.formBuilder.group({
+        title: new FormControl(this.book.Title, Validators.required),
+        price: new FormControl(this.book.Price, Validators.required),
+        iso: new FormControl(this.book.ISO, [
+          Validators.required,
+          Validators.pattern("[0-9]{8}")
+        ]),
+        author: new FormControl(this.book.Author, Validators.required),
+        genre: new FormControl(this.book.Genre, Validators.required),
+        description: new FormControl(this.book.Description, Validators.required),
+      })
+      : this.addBookForm = this.formBuilder.group({
+        title: new FormControl("", Validators.required),
+        price: new FormControl("", Validators.required),
+        iso: new FormControl("", [
+          Validators.required,
+          Validators.pattern("[0-9]{8}")
+        ]),
+        author: new FormControl("", Validators.required),
+        genre: new FormControl("", Validators.required),
+        description: new FormControl("", Validators.required),
+      })
+      ;
   }
 
   checkForm() {

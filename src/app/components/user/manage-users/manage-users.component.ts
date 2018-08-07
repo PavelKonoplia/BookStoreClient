@@ -29,18 +29,11 @@ export class ManageUsersComponent implements OnInit {
   }
 
   changeRole(userId: number, role: string) {
-    console.log("changing role" + userId + " " + role);
     this.userService.changeRole(userId, role);
   }
 
   deleteUser(user: User) {
-    console.log("click");
     this.userService.deleteUser(user.Id);
     this.users.splice(this.users.indexOf(user), 1);
   }
-
-  checking() {
-    console.log(this.users);
-  }
-
 }

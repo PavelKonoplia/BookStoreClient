@@ -1,6 +1,3 @@
-
-<add-book></add-book>
-
 <div *ngFor="let book of products">
     <div class="container-fluid border rounded py-2 my-1">
         <div class="row">
@@ -16,6 +13,8 @@
             </div>
             <div class="col-sm-2 text-center">
                 <span>Price: {{book.Price}}</span>
+                <button (click)="update(book)">Update</button>
+                <button (click)="delete(book)">Delete</button>
             </div>
         </div>
     </div>
