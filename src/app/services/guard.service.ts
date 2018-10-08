@@ -20,7 +20,7 @@ export class Guard implements CanActivate, CanDeactivate<ComponentCanDeactivate>
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (this.userService.token) {
+        if (JSON.parse(localStorage.getItem("token"))) {
             return true;
         }
         else {

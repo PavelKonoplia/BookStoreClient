@@ -14,6 +14,6 @@ export class PersonalPageComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.role = this.userService.role;
+    this.role = JSON.parse(localStorage.getItem("token")).role;
   }
 }

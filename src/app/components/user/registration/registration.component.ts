@@ -1,3 +1,4 @@
+import { RegistrateService } from './../../../services/registrate.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -15,7 +16,7 @@ export class RegistrationComponent implements ComponentCanDeactivate {
   saved: boolean = false;
   registrationForm: FormGroup;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private registrateService: RegistrateService, private formBuilder: FormBuilder) {
     this.createForm();
   }
 
@@ -59,7 +60,7 @@ export class RegistrationComponent implements ComponentCanDeactivate {
 
   submit() {
     let user = new User(null, this.registrationForm.get("userName").value, this.registrationForm.get("email").value, this.registrationForm.get("passwords.password").value)
-    this.userService.registrateUser(user);
+    this.registrateService.registrateUser(user);
     this.saved = true;
   }
 }

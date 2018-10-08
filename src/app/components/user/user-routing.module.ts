@@ -8,6 +8,7 @@ import { ChartComponent } from "./chart/chart.component";
 import { ManageUsersComponent } from "./manage-users/manage-users.component";
 import { AddBookComponent } from "../book/add-book/add-book.component";
 import { ManageBooksComponent } from "./manage-books/manage-books.component";
+import { UpdateBookComponent } from "../book/update-book/update-book.component";
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { ManageBooksComponent } from "./manage-books/manage-books.component";
                     { path: 'manage-users', component: ManageUsersComponent },
                     { path: 'add-book', component: AddBookComponent },
                     { path: 'manage-books', component: ManageBooksComponent},
+                    { path: 'update-book/{id}', component: UpdateBookComponent}
                 ]
             },
         ])

@@ -1,3 +1,4 @@
+import { RegistrateService } from './registrate.service';
 import { Injectable } from '@angular/core';
 import { User } from '../common/models';
 import { environment } from '../../environments/environment';
@@ -22,59 +23,54 @@ interface IToken {
 })
 export class UserService {
 
-    public token: string;
+    token: IToken;
+
     public userId: number;
     public role: string;
     public header: HttpHeaders;
 
-    constructor(private http: HttpClient, private router: Router) { }
-
-    public login(username: string, password: string) {
-        let request = `grant_type=password&username=${username}&password=${password}`;
-        this.http.post(API_URL + TOKEN_API, request)
-            .subscribe((token: IToken) => {
-                this.token = token.access_token.toString();
-                this.userId = token.userID,
-                    this.role = token.role,
-                    this.header = new HttpHeaders({
-                        'Content-Type': 'application/json', 'Authorization':
-                            `Bearer ${token.access_token.toString()}`
-                    });
-            });
+    constructor(private http: HttpClient,
+        private router: Router,
+        private registrateService: RegistrateService) {
     }
 
     logout() {
-        this.token = undefined;
-        this.role = undefined;
-        this.header = undefined;
-        this.userId = undefined;
-    }
-
-    registrateUser(user: User) {
-        return this.http
-            .post(API_URL + USER_API, user).subscribe((userResponse: User) => {
-                this.login(userResponse.UserName, userResponse.PasswordHash)
-                this.router.navigate(["/login"]);
-            });
+        localStorage.clear();
     }
 
     getUserByName(userName: string) {
+        this.getToken();
         return this.http
             .get(API_URL + USER_API + '/' + userName, { headers: this.header });
     }
 
     getUsers() {
+        this.getToken();
         return this.http
             .get(API_URL + USER_API, { headers: this.header });
     }
 
     deleteUser(userId: number) {
+        this.getToken();
         this.http.delete(API_URL + USER_API + `/${userId}`, { headers: this.header }).subscribe();
     }
 
     changeRole(userId: number, role: string) {
+        this.getToken();
         console.log(userId + " " + role)
         return this.http
             .put(API_URL + USER_API + `?id=${userId}&role=${role}`, null, { headers: this.header }).subscribe();
+    }
+
+    private getToken() {
+        this.token = JSON.parse(localStorage.getItem('token'));
+        if (this.token) {
+            this.userId = this.token.userID,
+                this.role = this.token.role,
+                this.header = new HttpHeaders({
+                    'Content-Type': 'application/json', 'Authorization':
+                        `Bearer ${this.token.access_token.toString()}`
+                });
+        }
     }
 }
